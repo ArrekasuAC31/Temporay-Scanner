@@ -1,0 +1,7 @@
+{
+  "name": "ja-mobile-camera-scan-out",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Standalone mobile waybill scan-out app; Vercel + Google Apps Script + Google Sheets. No Supabase.",
+  "type": "commonjs"
+}

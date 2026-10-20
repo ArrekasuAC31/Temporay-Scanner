@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="theme-color" content="#0d1727" />
+  <meta name="robots" content="noindex,nofollow,noarchive" />
+  <title>J&A • Scan Out</title>
+  <style>
+    :root { color-scheme: light; --ink:#0f1f34; --sub:#69788c; --line:#e5eaf1; --bg:#f5f7fb; --green:#0c9164; --dark:#0d1727; --amber:#9b6200; --red:#b12a31; }
+    *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+    .top{background:var(--dark);color:#fff;padding:20px 18px 23px}.wrap{max-width:560px;margin:0 auto}.brand{font-size:11px;font-weight:800;letter-spacing:2.4px;color:#a8bcce}.title{font-size:25px;letter-spacing:-.7px;line-height:1.14;margin:8px 0 4px;font-weight:800}.tagline{font-size:12px;color:#b8c5d8;line-height:1.5}.topline{display:flex;align-items:center;justify-content:space-between;gap:12px}.pill{border:1px solid #345067;color:#bfead8;border-radius:100px;padding:6px 9px;font-size:10px;font-weight:800;white-space:nowrap}
+    main{max-width:560px;margin:0 auto;padding:16px 14px 45px}.card{background:#fff;border:1px solid var(--line);border-radius:17px;margin-bottom:13px;padding:17px 16px;box-shadow:0 4px 22px rgba(20,36,55,.025)}h2{font-size:15px;letter-spacing:-.3px;margin:0 0 7px}.muted{font-size:12px;line-height:1.45;color:var(--sub);margin:0}.field{margin-top:13px}label{display:block;color:#54677e;font-size:11px;font-weight:800;margin-bottom:6px}.input{font:inherit;background:#fff;border:1px solid #d5deea;border-radius:10px;width:100%;padding:13px 12px;color:var(--ink);outline:none;min-height:47px}.input:focus{border-color:#0b9369;box-shadow:0 0 0 3px #d7f5e8}.input[readonly]{background:#f6f9fb}.flex{display:flex;align-items:center;gap:10px}.grow{flex:1;min-width:0}.btn{border:0;border-radius:10px;padding:13px 14px;min-height:46px;font:inherit;font-size:13px;font-weight:750;cursor:pointer;background:#13243a;color:white;display:inline-flex;align-items:center;justify-content:center;gap:6px}.btn:disabled{opacity:.48;cursor:not-allowed}.btn.green{background:#0c9164}.btn.outline{background:white;color:#173047;border:1px solid #d6e0e9}.btn.block{width:100%}.tiny{font-size:11px;color:var(--sub);margin-top:7px;line-height:1.4}.section-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:11px}.status{padding:12px;border-radius:11px;font-size:12px;font-weight:700;line-height:1.5;background:#f1f5f9;border:1px solid #e6ebf1}.status.good{background:#e8f8ef;color:#067344;border-color:#baebd1}.status.warn{background:#fff7e7;color:#905600;border-color:#f7df9f}.status.fail{background:#fff0f0;color:#9e2633;border-color:#ffc7cb}.status.busy{background:#eef4ff;color:#315c96;border-color:#cce1ff}.camera-zone{position:relative;background:#111b29;border-radius:14px;overflow:hidden;min-height:220px;display:flex;justify-content:center;align-items:center;flex-direction:column;gap:9px;color:#c0cfdf;padding:8px}.camicon{font-size:38px;opacity:.65}.camera-zone p{font-size:12px;text-align:center;max-width:260px;line-height:1.5;margin:0}.camera-zone video{border-radius:12px}.qrreader{width:100%;min-height:220px;display:none}.qrreader img{max-width:100%}.scanner-actions{margin-top:12px;display:flex;gap:8px}.scanner-actions button{flex:1}.badge{font-size:10px;font-weight:800;color:#68778a}.scan-card{display:none;padding:14px;border:1px solid #b3e9cb;background:#e9faf1;border-radius:11px;margin:13px 0 0}.scan-card.warn{background:#fff6e6;border-color:#f5daa1}.scan-card.fail{background:#fff2f2;border-color:#fac9ce}.scan-card strong{display:block;font-size:13px;overflow-wrap:anywhere}.scan-card small{display:block;margin-top:5px;font-size:11px;opacity:.8}.history{margin:4px 0 0;padding:0;list-style:none}.history li{display:flex;align-items:center;gap:8px;border-bottom:1px solid #edf1f5;padding:11px 0;font-size:12px}.history li:last-child{border:0;padding-bottom:0}.history .waybill{flex:1;font-weight:750;word-break:break-all}.history .mark{font-weight:800;color:#0e946b;white-space:nowrap;font-size:10px}.empty{font-size:12px;color:#8b96a5;padding:10px 0}.note{margin-top:7px;font-size:11px;color:var(--sub);line-height:1.55}.counter{font-weight:800;font-variant-numeric:tabular-nums;color:#0b976a}.chip{display:inline-flex;align-items:center;gap:5px;background:#f2f6fb;color:#4b6581;font-size:10px;border-radius:100px;padding:7px 10px;font-weight:800}.off{display:none!important}
+  </style>
+  <script defer src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+</head>
+<body>
+  <header class="top"><div class="wrap"><div class="topline"><span class="brand">J&A OPERATIONS</span><span class="pill">GOOGLE SHEETS BACKUP MODE</span></div><h1 class="title">Mobile Scan-Out</h1><div class="tagline">Scan waybills with your phone camera. No Supabase required.</div></div></header>
+  <main>
+    <section class="card" aria-label="Operator details">
+      <div class="section-head"><h2 style="margin:0">Scan session</h2><span class="chip">JA Enterprises</span></div>
+      <p class="muted">Warehouse logging only. This does not deduct stock or supplies yet.</p>
+      <div class="field"><label for="password">Private scanner password</label><input id="password" class="input" type="password" autocomplete="off" autocapitalize="none" placeholder="Enter operator access password" maxlength="128" /></div>
+      <div class="field"><label for="operator">Operator name (optional)</label><input id="operator" class="input" type="text" autocomplete="name" placeholder="Who is scanning?" maxlength="60" /></div>
+    </section>
+    <section class="card" aria-label="Scanner">
+      <div class="section-head"><h2 style="margin:0">Camera scanner</h2><span id="cam-status" class="badge">CAMERA OFF</span></div>
+      <div id="camera-placeholder" class="camera-zone"><div class="camicon">▣</div><p>Use your phone's back camera to scan the barcode on a shipped parcel.</p></div>
+      <div id="reader" class="qrreader" aria-label="Live camera reader"></div>
+      <div class="scanner-actions"><button id="start-btn" class="btn green" type="button">◉ Start Camera</button><button id="stop-btn" class="btn outline" type="button" disabled>Stop</button></div>
+      <div id="feedback" class="scan-card" role="status" aria-live="polite"><strong id="feedback-title"></strong><small id="feedback-detail"></small></div>
+      <button id="next-btn" class="btn green block off" style="margin-top:11px" type="button">↻ Scan Next Parcel</button>
+      <p class="note">Allow camera access when prompted. Works in a normal mobile browser over HTTPS. If a barcode won't read, use manual entry below.</p>
+    </section>
+    <section class="card" aria-label="Manual entry">
+      <h2>Manual fallback</h2><div class="flex"><input class="input grow" id="manual-waybill" type="text" inputmode="text" autocapitalize="characters" autocomplete="off" spellcheck="false" placeholder="SPEPH... or JT..." maxlength="60" /><button id="save-btn" type="button" class="btn">Save</button></div>
+      <p class="note">Only scan when the parcel has actually been physically signed out or handed over.</p>
+    </section>
+    <section class="card" aria-label="Recent saved entries"><div class="section-head"><h2 style="margin:0">This session</h2><span class="badge"><span id="counter" class="counter">0</span> saved</span></div><ul id="recent" class="history"><li class="empty">No saved scans in this browser session yet.</li></ul><p class="note">The official log is in Google Sheets → SCAN LOG. These recent entries are only shown on this screen, not a full historical count.</p></section>
+    <div id="service-status" class="status" role="status" aria-live="polite">Ready. Enter your scanner password and start the camera.</div>
+  </main>
+  <script>
+    (() => {
+      'use strict';
+      const $ = id => document.getElementById(id);
+      const password = $('password'), operator = $('operator'), manual = $('manual-waybill');
+      const startBtn = $('start-btn'), stopBtn = $('stop-btn'), nextBtn = $('next-btn'), saveBtn = $('save-btn');
+      const feedback = $('feedback'), title = $('feedback-title'), detail = $('feedback-detail'), statusBox = $('service-status');
+      let scanner = null, running = false, paused = false, saving = false, saveCount = 0, recent = [];
+      function status(msg, type = '') { statusBox.textContent = msg; statusBox.className = 'status ' + type; }
+      function report(kind, code, msg, stamp) {
+        feedback.style.display = 'block'; feedback.className = 'scan-card ' + (kind === 'saved' ? '' : kind === 'duplicate' ? 'warn' : 'fail');
+        title.textContent = kind === 'saved' ? '✓ SAVED — SCAN OUT' : kind === 'duplicate' ? '⚠ DUPLICATE — NOT SAVED' : '✕ NOT SAVED';
+        detail.textContent = code + (stamp ? ' · ' + stamp + ' PH' : '') + (msg ? ' · ' + msg : '');
+        nextBtn.classList.remove('off');
+      }
+      function drawRecent() {
+        const el = $('recent'); el.replaceChildren();
+        recent.forEach(r => { const li=document.createElement('li'), waybill=document.createElement('span'), mark=document.createElement('span');
+          waybill.className='waybill'; waybill.textContent=r.code; mark.className='mark'; mark.textContent=r.time; li.append(waybill,mark); el.append(li); });
+        if (!recent.length) { const li=document.createElement('li'); li.className='empty'; li.textContent='No saved scans in this browser session yet.'; el.append(li); }
+        $('counter').textContent=String(saveCount);
+      }
+      function setBusy(isBusy) { saving = isBusy; saveBtn.disabled=isBusy; startBtn.disabled=isBusy || running; stopBtn.disabled=isBusy || !running; }
+      function pauseCamera() { if (scanner && running && !paused) { try { scanner.pause(true); paused = true; $('cam-status').textContent='PAUSED'; } catch (_) {} } }
+      async function save(code) {
+        if (saving) return;
+        if (!password.value || password.value.length < 12) { status('Enter your private scanner password (12+ characters).', 'fail'); return; }
+        const waybill=String(code || '').trim().replace(/\s+/g,'').toUpperCase();
+        if (!/^[A-Z0-9-]{8,45}$/.test(waybill)) { status('Invalid waybill. Check the barcode and try again.', 'fail'); return; }
+        pauseCamera(); setBusy(true); nextBtn.classList.add('off'); feedback.style.display='none';
+        status('Saving to Google Sheets. Do not scan another parcel yet…', 'busy');
+        try {
+          const r=await fetch('/api/scan',{method:'POST',headers:{'Content-Type':'application/json','x-scan-password':password.value},
+            cache:'no-store',body:JSON.stringify({waybill, operator:operator.value})});
+          const data=await r.json().catch(()=>({status:'error'}));
+          if (r.ok && data.status==='saved') {
+            saveCount++; recent.unshift({code:waybill,time:data.timestampPH?.split(' ').slice(-1)[0]||'Saved'}); recent=recent.slice(0,6);
+            drawRecent(); report('saved', waybill, 'Recorded in SCAN LOG', data.timestampPH); status('Saved and confirmed in Google Sheets. Ready for next scan.', 'good');
+            if (navigator.vibrate) navigator.vibrate(80);
+            manual.value='';
+          } else if (data.status==='duplicate') {
+            report('duplicate', waybill, 'Already exists in SCAN LOG'); status('Duplicate blocked. No second record added.', 'warn'); manual.value='';
+          } else {
+            report('error', waybill, data.message||'Check SCAN LOG before retry.'); status(data.message||'Save not confirmed; verify the log before retry.', 'fail'); manual.value=waybill;
+          }
+        } catch (_) { report('error',waybill,'Network error; check SCAN LOG before retry.'); status('Network issue. Save not confirmed. Check the Sheet before retrying.', 'fail'); manual.value=waybill; }
+        finally { setBusy(false); }
+      }
+      async function startCamera() {
+        if (saving || running) return;
+        if (!password.value || password.value.length < 12) { status('Enter your private scanner password first.', 'fail'); password.focus(); return; }
+        if (typeof Html5Qrcode==='undefined') { status('Scanner library could not load. Check your internet or use manual entry.', 'fail'); return; }
+        if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) { status('Camera access unavailable. Open this site in Safari/Chrome over HTTPS.', 'fail'); return; }
+        setBusy(true); status('Opening camera…', 'busy');
+        try {
+          scanner=new Html5Qrcode('reader',{formatsToSupport:[
+            Html5QrcodeSupportedFormats.CODE_128, Html5QrcodeSupportedFormats.CODE_39,
+            Html5QrcodeSupportedFormats.ITF, Html5QrcodeSupportedFormats.QR_CODE,
+            Html5QrcodeSupportedFormats.DATA_MATRIX
+          ],verbose:false});
+          $('reader').style.display='block'; $('camera-placeholder').style.display='none';
+          await scanner.start({facingMode:'environment'}, {
+            fps:12, qrbox:(w,h)=>({width:Math.max(120,Math.min(340,Math.floor(w*.85))),height:Math.max(65,Math.min(150,Math.floor(h*.4)))}),
+            aspectRatio:1.3333333
+          }, decoded => { if (running && !saving && !paused) save(decoded); }, ()=>{});
+          running=true; paused=false; $('cam-status').textContent='CAMERA ON'; status('Camera ready. Scan a physical waybill after handover.', 'good');
+        } catch (err) {
+          running=false; paused=false; $('reader').style.display='none'; $('camera-placeholder').style.display='flex';
+          $('cam-status').textContent='CAMERA OFF';
+          status('Cannot open camera. Check browser permission or use manual entry.', 'fail');
+          try { if(scanner) await scanner.clear(); } catch (_) {} scanner=null;
+        } finally { setBusy(false); stopBtn.disabled=!running; startBtn.disabled=running; }
+      }
+      async function stopCamera() {
+        if (!scanner) return;
+        try { if (running) await scanner.stop(); await scanner.clear(); } catch (_) {}
+        scanner=null;running=false;paused=false;$('reader').style.display='none';$('camera-placeholder').style.display='flex';
+        $('cam-status').textContent='CAMERA OFF'; startBtn.disabled=false;stopBtn.disabled=true;
+      }
+      startBtn.addEventListener('click',startCamera);
+      stopBtn.addEventListener('click',()=>{stopCamera();status('Camera stopped. You can still save manually.');});
+      nextBtn.addEventListener('click',async()=>{
+        if(saving)return; feedback.style.display='none';nextBtn.classList.add('off');manual.value='';
+        if(scanner&&running&&paused){try{scanner.resume();paused=false;$('cam-status').textContent='CAMERA ON';status('Ready. Scan next parcel.','good');}catch(_){await stopCamera();status('Tap Start Camera to continue.');}}
+        else if(!running){status('Tap Start Camera, or enter a waybill manually.');}
+      });
+      saveBtn.addEventListener('click',()=>save(manual.value));
+      manual.addEventListener('keydown',e=>{ if(e.key==='Enter'){e.preventDefault();save(manual.value);} });
+      document.addEventListener('visibilitychange',()=>{if(document.hidden && !saving && running){stopCamera();status('Camera stopped when the app went to background. Tap Start Camera to continue.');}});
+      drawRecent();
+    })();
+  </script>
+</body>
+</html>
